@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import type { SpotifyApiResponse } from "@/types/spotify";
 
+export const dynamic = "force-static";
+
 export function GET() {
   const response: SpotifyApiResponse = {
     success: false,
