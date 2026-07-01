@@ -9,11 +9,14 @@ export function SpotifyNowPlaying() {
   const [track, setTrack] = useState<RecentlyPlayedTrack | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
   useEffect(() => {
     async function fetchTrack() {
       try {
-        const response = await fetch("/api/spotify/recently-played");
+        const response = await fetch(
+          `${basePath}/api/spotify/recently-played`
+        );
         const data = await response.json();
 
         if (data.success && data.data) {
@@ -31,9 +34,8 @@ export function SpotifyNowPlaying() {
     }
 
     fetchTrack();
-  }, []);
+  }, [basePath]);
 
-  // Silent failure - don't show anything if error or loading
   if (loading || error || !track) {
     return null;
   }
