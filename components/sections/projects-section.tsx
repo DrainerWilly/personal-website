@@ -8,6 +8,7 @@ import Image from "next/image";
 
 export function ProjectsSection() {
   const { projects } = resumeData;
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
   return (
     <section id="projects" className="py-6 px-4">
@@ -22,7 +23,7 @@ export function ProjectsSection() {
               {project.image && (
                 <div className="relative w-full h-50 bg-muted">
                   <Image
-                    src={project.image}
+                    src={`${basePath}${project.image}`}
                     alt={project.name}
                     fill
                     className="object-cover"

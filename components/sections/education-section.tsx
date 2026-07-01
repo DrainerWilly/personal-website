@@ -9,6 +9,7 @@ import Image from "next/image";
 
 export function EducationSection() {
   const { education } = resumeData;
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   const [expandedIndices, setExpandedIndices] = useState<Set<number>>(new Set());
 
   const toggleExpand = (index: number) => {
@@ -40,7 +41,7 @@ export function EducationSection() {
                 <div className="shrink-0 w-12 h-12 relative rounded-md overflow-hidden flex items-center justify-center">
                   {edu.logo ? (
                     <Image
-                      src={edu.logo}
+                      src={`${basePath}${edu.logo}`}
                       alt={`${edu.institution} logo`}
                       fill
                       className="object-contain"

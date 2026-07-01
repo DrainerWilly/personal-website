@@ -10,6 +10,7 @@ const INITIAL_EXPERIENCE_COUNT = 5;
 
 export function ExperienceSection() {
   const { experiences } = resumeData;
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   const [expandedIndices, setExpandedIndices] = useState<Set<number>>(new Set());
   const [showAllExperiences, setShowAllExperiences] = useState(false);
   const visibleExperiences = showAllExperiences
@@ -46,7 +47,7 @@ export function ExperienceSection() {
                 <div className="shrink-0 w-12 h-12 relative rounded-md overflow-hidden flex items-center justify-center">
                   {exp.logo ? (
                     <Image
-                      src={exp.logo}
+                      src={`${basePath}${exp.logo}`}
                       alt={`${exp.company} logo`}
                       fill
                       className="object-contain"
